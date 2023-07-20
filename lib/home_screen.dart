@@ -1,64 +1,111 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  // int _counter = 0;
 
-  void _incrementCounter() {
+  // void _incrementCounter() {
+  //   setState(() {
+
+  //     _counter++;
+  //   });
+  // }
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Random',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Upload',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: Quotes',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
     setState(() {
-     
-      _counter++;
+      _selectedIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
+      backgroundColor: const Color(0xFFf4e0d9),
       appBar: AppBar(
-      
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-       
-        title: Text(widget.title),
-      ),
-      body: Center(
-     
-        child: Column(
-        
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Icon(Icons.info_outline),
+        actions: const <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: Icon(
+              Icons.menu,
+              color: Colors.black,
+              size: 25,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: Stack(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 1,
+            width: MediaQuery.of(context).size.width * 1,
+            child: Image.asset(
+              'assets/images/food-image.jpeg',
+              fit: BoxFit.cover,
+            ),
+          ),
+          const Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[],
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: const Color(0xFFf4e0d9),
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/icons/rendom.png',
+              width: 30,
+            ),
+            label: 'Random',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(
+              Icons.camera_alt_outlined,
+              size: 30,
+            ),
+            label: 'Upload',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/icons/quotes.png',
+              width: 30,
+            ),
+            label: 'Quotes',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.black,
+        onTap: _onItemTapped,
+      ),
     );
   }
 }
