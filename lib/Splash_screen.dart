@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'home_screen.dart';
-
 class SplashContainer extends StatefulWidget {
   const SplashContainer({super.key});
 
@@ -44,7 +43,6 @@ class _SplashContainerState extends State<SplashContainer> {
               const SizedBox(height:8),
                Text('SWIPE up\nVERSION 1.0',textAlign: TextAlign.center,style: GoogleFonts.ibmPlexSans(
               color: Colors.black,fontSize: 16,fontWeight: FontWeight.w500),),
-
           ],
         ),
       ) 
