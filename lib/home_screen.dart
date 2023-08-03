@@ -1,8 +1,8 @@
 // ignore_for_file: unused_field
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:language_translate/img_picker.dart';
+import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -12,14 +12,48 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // int _counter = 0;
+  List<Widget> views = [
+    Container(),
+    Container(),
+    Container(),
+     const ImagePickerWidget(),
+    Container(),
+  ];
 
-  // void _incrementCounter() {
-  //   setState(() {
+  ShapeBorder? bottomBarShape = const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(10)),
+  );
+  SnakeBarBehaviour snakeBarStyle = SnakeBarBehaviour.floating;
+  EdgeInsets padding = const EdgeInsets.all(12);
 
-  //     _counter++;
-  //   });
-  // }
+  int selectedItemPosition = 0;
+  SnakeShape snakeShape = SnakeShape.indicator;
+
+  bool showSelectedLabels = false;
+  bool showUnselectedLabels = false;
+
+  Color selectedColor = const Color(0xFF4873A6).withOpacity(0.7);
+  Color unselectedColor = Colors.blueGrey;
+
+  Gradient selectedGradient =
+      const LinearGradient(colors: [Colors.red, Colors.amber]);
+  Gradient unselectedGradient =
+      const LinearGradient(colors: [Colors.red, Colors.blueGrey]);
+
+  Color? containerColor;
+  List<Color> containerColors = [
+    const Color(0xFFFDE1D7),
+    const Color(0xFFE4EDF5),
+    const Color(0xFFE7EEED),
+    const Color(0xFFF4E4CE),
+    const Color(0xFFF4E4CE),
+  ];
+  ItemPosition(value) {
+    setState(() {
+      selectedItemPosition = value;
+    });
+  }
+
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black);
@@ -63,61 +97,47 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      body: Stack(
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 1,
-            width: MediaQuery.of(context).size.width * 1,
-            child: Image.asset(
-              'assets/images/food-image.jpeg',
-              fit: BoxFit.cover,
-            ),
-          ),
-         Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const SizedBox(height:190),
-              InkWell(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: ((context) => const ImagePicker())));
-                },
-                child: Container(height: 60,width: 120,
-                color: Colors.black,
-                child: Center(child: Text("textfield",style: GoogleFonts.ibmPlexSans(color: Colors.white,fontSize: 20),textAlign: TextAlign.center,)),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color(0xFFf4e0d9),
-        items: <BottomNavigationBarItem>[
+      body: views[selectedItemPosition],
+      
+      bottomNavigationBar: SnakeNavigationBar.color(
+        shadowColor: const Color(0xFF4873A6).withOpacity(0.7),
+        height: 40,
+        behaviour: snakeBarStyle,
+        snakeShape: snakeShape,
+        shape: bottomBarShape,
+        padding: padding,
+
+        ///configuration for SnakeNavigationBar.color
+        snakeViewColor: selectedColor,
+        selectedItemColor:
+            snakeShape == SnakeShape.indicator ? selectedColor : null,
+        unselectedItemColor: unselectedColor,
+
+        ///configuration for SnakeNavigationBar.gradient
+        // snakeViewGradient: selectedGradient,
+        // selectedItemGradient: snakeShape == SnakeShape.indicator ? selectedGradient : null,
+        // unselectedItemGradient: unselectedGradient,
+
+        showUnselectedLabels: showUnselectedLabels,
+        showSelectedLabels: showSelectedLabels,
+
+        currentIndex: selectedItemPosition,
+        onTap: (index) => ItemPosition(index),
+        items: const [
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/rendom.png',
-              width: 30,
-            ),
-            label: 'Random',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(
-              Icons.camera_alt_outlined,
-              size: 30,
-            ),
-            label: 'Upload',
-          ),
+              icon: Icon(Icons.home_outlined), label: 'Activity'),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/quotes.png',
-              width: 30,
-            ),
-            label: 'Quotes',
-          ),
+              icon: Icon(Icons.play_lesson_outlined, size: 20),
+              label: 'Lessons'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.camera, size: 20), label: 'Camera'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.groups_2_outlined, size: 30), label: 'Textfield'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person_2_outlined), label: 'Person')
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        onTap: _onItemTapped,
+        selectedLabelStyle: const TextStyle(fontSize: 10),
+        unselectedLabelStyle: const TextStyle(fontSize: 10),
       ),
     );
   }
