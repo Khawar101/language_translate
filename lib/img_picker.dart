@@ -79,7 +79,7 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
                           ? const CircleAvatar(
                               radius: 65,
                               backgroundImage:
-                                  AssetImage('assets/images/download.jpeg'),
+                                  AssetImage('assets/images/foodimages.jpeg'),
                               backgroundColor: Colors.red,
                               foregroundColor: Colors.transparent,
                             )
