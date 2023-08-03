@@ -1,6 +1,8 @@
 // ignore_for_file: unused_field
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:language_translate/img_picker.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -71,9 +73,20 @@ class _MyHomePageState extends State<MyHomePage> {
               fit: BoxFit.cover,
             ),
           ),
-          const Column(
+         Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[],
+            children: <Widget>[
+              const SizedBox(height:190),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: ((context) => const ImagePicker())));
+                },
+                child: Container(height: 60,width: 120,
+                color: Colors.black,
+                child: Center(child: Text("textfield",style: GoogleFonts.ibmPlexSans(color: Colors.white,fontSize: 20),textAlign: TextAlign.center,)),
+                ),
+              ),
+            ],
           ),
         ],
       ),
