@@ -55,8 +55,11 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
   }
   postNow ()async{
      FirebaseFirestore firestore = FirebaseFirestore.instance;
-      await firestore.collection("users").doc().update({
+      await firestore.collection("users").doc().set({
         "profile": profile,
+        "email":emailCNTR.text,
+        "password":passwordCNTR.text
+
       });
   }
 
