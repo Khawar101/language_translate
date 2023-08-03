@@ -19,6 +19,9 @@ class ImagePickerWidget extends StatefulWidget {
 }
 
 class _ImagePickerWidgetState extends State<ImagePickerWidget> {
+    TextEditingController emailCNTR = TextEditingController();
+     TextEditingController passwordCNTR = TextEditingController();
+
    var profile = "";
   //  final _signupService = locator<SignupService>();
 FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -29,24 +32,32 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
     Reference ref = FirebaseStorage.instance
         .ref()
         .child("profile/${DateTime.now().microsecondsSinceEpoch}");
+       
     UploadTask uploadTask = ref.putFile(File(image!.path));
     // uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
     //   double progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     //     progressshow = progress;
     // });
     uploadTask.whenComplete(() async {
-      profile = await ref.getDownloadURL();
+      String url = await ref.getDownloadURL();  
+       setState(() {
+          profile=url;
+        });
+    
       log(profile);
-      // FirebaseFirestore firestore = FirebaseFirestore.instance;
-      // await firestore.collection("users").doc(widget.UserData["UID"]).update({
-      //   "profile": url,
-      // });
+      //
       // widget.UserData["profile"] = url;
     }).catchError((onError) {
       log(onError);
       // snackBar(context, onError.toString());
     });
     return profile;
+  }
+  postNow ()async{
+     FirebaseFirestore firestore = FirebaseFirestore.instance;
+      await firestore.collection("users").doc().update({
+        "profile": profile,
+      });
   }
 
   @override
@@ -61,7 +72,7 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
                 Stack(
                   children: [
                     Center(
-                      child:profile == null
+                      child:profile == ""
                           ? const CircleAvatar(
                               radius: 65,
                               backgroundImage:
@@ -72,8 +83,8 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
                           : CircleAvatar(
                               radius: 65,
                               backgroundImage: NetworkImage(profile),
-                              backgroundColor: Colors.transparent,
-                              foregroundColor: Colors.transparent,
+                              backgroundColor: Colors.black,
+                              // foregroundColor: Colors.green,
                             ),
                     ),
                     Center(
@@ -104,10 +115,12 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
                 const SizedBox(height: 30),
                 CustomTextFormField(
                   hintText: 'Email',
+                  controller: emailCNTR,
                 ),
                 const SizedBox(height: 30),
                 CustomTextFormField(
                   hintText: 'password',
+                  controller: passwordCNTR,
                 ),
                 const SizedBox(height: 30),
                 Center(
