@@ -126,27 +126,50 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
                   controller: passwordCNTR,
                 ),
                 const SizedBox(height: 30),
-                Center(
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      height: 60,
-                      width: 120,
-                      color: Colors.black,
-                      child: Center(
-                        child: Text(
-                          "Back",
-                          style: GoogleFonts.ibmPlexSans(
-                            color: Colors.white,
-                            fontSize: 20,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 120,
+                        color: Colors.black,
+                        child: Center(
+                          child: Text(
+                            "Back",
+                            style: GoogleFonts.ibmPlexSans(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
-                  ),
+                    InkWell(
+                      onTap: () {
+                      postNow();
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 120,
+                        color: Colors.black,
+                        child: Center(
+                          child: Text(
+                            "postNow",
+                            style: GoogleFonts.ibmPlexSans(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
