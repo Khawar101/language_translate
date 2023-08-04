@@ -12,7 +12,7 @@ import 'package:language_translate/widgets/textfield.dart';
 
 class ImagePickerWidget extends StatefulWidget {
   final String id;
-  final String data;
+  final  data;
 
   const ImagePickerWidget({Key? key, required this.id, required this.data}) : super(key: key);
 
@@ -25,6 +25,18 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
      TextEditingController passwordCNTR = TextEditingController();
 
    var profile = "";
+
+  @override
+  void initState() {
+    setState(() {
+     emailCNTR.text =widget.data['email'].toString();
+      passwordCNTR.text = widget.data['password'].toString(); 
+      profile = widget.data['profile'].toString();
+    });
+     
+    super.initState();
+  }
+
   //  final _signupService = locator<SignupService>();
 FirebaseFirestore firestore = FirebaseFirestore.instance;
   late  XFile? image;
@@ -56,13 +68,24 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
     return profile;
   }
   postNow ()async{
-     FirebaseFirestore firestore = FirebaseFirestore.instance;
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    if(widget.id==null){
+     
       await firestore.collection("users").doc().set({
         "profile": profile,
         "email":emailCNTR.text,
         "password":passwordCNTR.text
 
+      }); 
+    }else{
+     await firestore.collection("users").doc(widget.id).update({
+        "profile": profile,
+        "email":emailCNTR.text,
+        "password":passwordCNTR.text
+
       });
+    }
+     
   }
 
   @override

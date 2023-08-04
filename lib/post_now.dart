@@ -66,7 +66,7 @@ class _PostNowDataState extends State<PostNowData> {
                                 foregroundColor: Colors.transparent,
                               ),
                               subtitle: Text(data['password'].toString()),
-                              trailing:  PopupMenu(id: data.id.toString(),),
+                              trailing:  PopupMenu(id: data.id.toString(), data: data,),
                             );
                           });
                     })
@@ -83,7 +83,9 @@ enum SampleItem { itemOne, itemTwo }
 
 class PopupMenu extends StatefulWidget {
 final String id;
-  const PopupMenu({super.key, required this.id});
+  final  data;
+ 
+  const PopupMenu({super.key, required this.id, required this.data});
 
   @override
   State<PopupMenu> createState() => _PopupMenuState();
@@ -113,7 +115,7 @@ class _PopupMenuState extends State<PopupMenu> {
           deleteUser();
           log("delete");
         }else{
-          
+                Navigator.push(context, MaterialPageRoute(builder: ((context) =>  ImagePickerWidget(id: '', data: widget.data,))));
           log("Edit");
         }
       },
@@ -128,15 +130,9 @@ class _PopupMenuState extends State<PopupMenu> {
         PopupMenuItem<SampleItem>(
             value: SampleItem.itemTwo,
             // padding: EdgeInsets.all(0),
-            child: InkWell(
-              onTap: () {
-                
-                Navigator.push(context, MaterialPageRoute(builder: ((context) =>  ImagePickerWidget(data: '', id: '',))));
-              },
-              child: Text(
-                "Edit",
-                style: GoogleFonts.ibmPlexSans(color: Colors.black),
-              ),
+            child: Text(
+              "Edit",
+              style: GoogleFonts.ibmPlexSans(color: Colors.black),
             ))
       ],
     );
