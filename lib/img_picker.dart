@@ -78,8 +78,7 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
                       child:profile == ""
                           ? const CircleAvatar(
                               radius: 65,
-                              backgroundImage:
-                                  AssetImage('assets/images/foodimages.jpeg'),
+                              backgroundImage:AssetImage('assets/images/food-image.jpeg'),
                               backgroundColor: Colors.red,
                               foregroundColor: Colors.transparent,
                             )

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:language_translate/img_picker.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
+import 'package:language_translate/post_now.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -13,7 +14,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Widget> views = [
-    Container(),
+    const PostNowData(),
     Container(),
     Container(),
      const ImagePickerWidget(),
