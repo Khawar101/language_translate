@@ -115,7 +115,7 @@ class _PopupMenuState extends State<PopupMenu> {
           deleteUser();
           log("delete");
         }else{
-                Navigator.push(context, MaterialPageRoute(builder: ((context) =>  ImagePickerWidget(id: '', data: widget.data,))));
+                Navigator.push(context, MaterialPageRoute(builder: ((context) =>  ImagePickerWidget(id: widget.id, data: widget.data,))));
           log("Edit");
         }
       },

@@ -12,52 +12,53 @@ import 'package:language_translate/widgets/textfield.dart';
 
 class ImagePickerWidget extends StatefulWidget {
   final String id;
-  final  data;
+  final data;
 
-  const ImagePickerWidget({Key? key, required this.id, required this.data}) : super(key: key);
+  const ImagePickerWidget({Key? key, required this.id, required this.data})
+      : super(key: key);
 
   @override
   State<ImagePickerWidget> createState() => _ImagePickerWidgetState();
 }
 
 class _ImagePickerWidgetState extends State<ImagePickerWidget> {
-    TextEditingController emailCNTR = TextEditingController();
-     TextEditingController passwordCNTR = TextEditingController();
+  TextEditingController emailCNTR = TextEditingController();
+  TextEditingController passwordCNTR = TextEditingController();
 
-   var profile = "";
+  var profile = "";
 
   @override
   void initState() {
     setState(() {
-     emailCNTR.text =widget.data['email'].toString();
-      passwordCNTR.text = widget.data['password'].toString(); 
+      emailCNTR.text = widget.data['email'].toString();
+      passwordCNTR.text = widget.data['password'].toString();
       profile = widget.data['profile'].toString();
     });
-     
+
     super.initState();
   }
 
   //  final _signupService = locator<SignupService>();
-FirebaseFirestore firestore = FirebaseFirestore.instance;
-  late  XFile? image;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  late XFile? image;
   Future pickImage() async {
     image = await ImagePicker()
         .pickImage(source: ImageSource.gallery, imageQuality: 45);
     Reference ref = FirebaseStorage.instance
         .ref()
         .child("profile/${DateTime.now().microsecondsSinceEpoch}");
-       
+
     UploadTask uploadTask = ref.putFile(File(image!.path));
     // uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
     //   double progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     //     progressshow = progress;
     // });
     uploadTask.whenComplete(() async {
-      String url = await ref.getDownloadURL();  
-       setState(() {
-          profile=url;
-        });
-    
+      String url = await ref.getDownloadURL();
+      setState(() {
+        profile = url;
+      });
+
       log(profile);
       //
       // widget.UserData["profile"] = url;
@@ -67,25 +68,22 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
     });
     return profile;
   }
-  postNow ()async{
+
+  postNow() async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    if(widget.id==null){
-     
+    if (widget.id == null) {
       await firestore.collection("users").doc().set({
         "profile": profile,
-        "email":emailCNTR.text,
-        "password":passwordCNTR.text
-
-      }); 
-    }else{
-     await firestore.collection("users").doc(widget.id).update({
+        "email": emailCNTR.text,
+        "password": passwordCNTR.text
+      });
+    } else {
+      await firestore.collection("users").doc(widget.id).update({
         "profile": profile,
-        "email":emailCNTR.text,
-        "password":passwordCNTR.text
-
+        "email": emailCNTR.text,
+        "password": passwordCNTR.text
       });
     }
-     
   }
 
   @override
@@ -100,10 +98,11 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
                 Stack(
                   children: [
                     Center(
-                      child:profile == ""
+                      child: profile == ""
                           ? const CircleAvatar(
                               radius: 65,
-                              backgroundImage:AssetImage('assets/images/food-image.jpeg'),
+                              backgroundImage:
+                                  AssetImage('assets/images/food-image.jpeg'),
                               backgroundColor: Colors.red,
                               foregroundColor: Colors.transparent,
                             )
@@ -122,7 +121,9 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
                         child: Align(
                           alignment: Alignment.bottomCenter,
                           child: GestureDetector(
-                            onTap:(){pickImage();} ,
+                            onTap: () {
+                              pickImage();
+                            },
                             child: Container(
                               height: 40,
                               width: 55,
@@ -175,7 +176,7 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
                     ),
                     InkWell(
                       onTap: () {
-                      postNow();
+                        postNow();
                       },
                       child: Container(
                         height: 60,
