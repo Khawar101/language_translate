@@ -1,6 +1,11 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+
+import 'img_picker.dart';
 
 class PostNowData extends StatefulWidget {
   const PostNowData({super.key});
@@ -10,22 +15,14 @@ class PostNowData extends StatefulWidget {
 }
 
 class _PostNowDataState extends State<PostNowData> {
+
   Stream collectionStream =
       FirebaseFirestore.instance.collection('users').snapshots();
   final Stream<QuerySnapshot> _usersStream =
       FirebaseFirestore.instance.collection('users').snapshots();
-  // final items = [
-  //   'Item 1',
-  //   'Item 2',
 
-  //   'Item 3',
-  //   'Item 4',
-  //   'Item 5',
-  //   'Item 6',
-  //   'Item 7',
-  //   'Item 8',
-  //   'Item 9',
-  // ];
+ 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +66,7 @@ class _PostNowDataState extends State<PostNowData> {
                                 foregroundColor: Colors.transparent,
                               ),
                               subtitle: Text(data['password'].toString()),
-                              trailing: const PopupMenu(),
+                              trailing:  PopupMenu(id: data.id.toString(),),
                             );
                           });
                     })
@@ -85,7 +82,8 @@ class _PostNowDataState extends State<PostNowData> {
 enum SampleItem { itemOne, itemTwo }
 
 class PopupMenu extends StatefulWidget {
-  const PopupMenu({super.key});
+final String id;
+  const PopupMenu({super.key, required this.id});
 
   @override
   State<PopupMenu> createState() => _PopupMenuState();
@@ -93,7 +91,15 @@ class PopupMenu extends StatefulWidget {
 
 class _PopupMenuState extends State<PopupMenu> {
   SampleItem? selectedMenu;
+ CollectionReference users = FirebaseFirestore.instance.collection('users');
 
+    Future<void> deleteUser() {
+  return users
+    .doc(widget.id)
+    .delete()
+    .then((value) => log("User Deleted"))
+    .catchError((error) => log("Failed to delete user: $error"));
+}
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<SampleItem>(
@@ -102,14 +108,18 @@ class _PopupMenuState extends State<PopupMenu> {
       initialValue: selectedMenu,
 
       // Callback that sets the selected popup menu item.
-      onSelected: (SampleItem item) {
-        setState(() {
-          selectedMenu = item;
-        });
+      onSelected: (SampleItem item) {log(item.toString());
+        if(item==SampleItem.itemOne){
+          deleteUser();
+          log("delete");
+        }else{
+          
+          log("Edit");
+        }
       },
       itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
         PopupMenuItem<SampleItem>(
-            //  padding: EdgeInsets.all(0),
+      
             value: SampleItem.itemOne,
             child: Text(
               "Delete",
@@ -118,9 +128,15 @@ class _PopupMenuState extends State<PopupMenu> {
         PopupMenuItem<SampleItem>(
             value: SampleItem.itemTwo,
             // padding: EdgeInsets.all(0),
-            child: Text(
-              "Edit",
-              style: GoogleFonts.ibmPlexSans(color: Colors.black),
+            child: InkWell(
+              onTap: () {
+                
+                Navigator.push(context, MaterialPageRoute(builder: ((context) => const ImagePickerWidget())));
+              },
+              child: Text(
+                "Edit",
+                style: GoogleFonts.ibmPlexSans(color: Colors.black),
+              ),
             ))
       ],
     );
