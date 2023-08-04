@@ -11,8 +11,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:language_translate/widgets/textfield.dart';
 
 class ImagePickerWidget extends StatefulWidget {
-  
-  const ImagePickerWidget({Key? key}) : super(key: key);
+  final String id;
+  final String data;
+
+  const ImagePickerWidget({Key? key, required this.id, required this.data}) : super(key: key);
 
   @override
   State<ImagePickerWidget> createState() => _ImagePickerWidgetState();

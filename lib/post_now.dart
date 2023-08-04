@@ -131,7 +131,7 @@ class _PopupMenuState extends State<PopupMenu> {
             child: InkWell(
               onTap: () {
                 
-                Navigator.push(context, MaterialPageRoute(builder: ((context) => const ImagePickerWidget())));
+                Navigator.push(context, MaterialPageRoute(builder: ((context) =>  ImagePickerWidget(data: '', id: '',))));
               },
               child: Text(
                 "Edit",

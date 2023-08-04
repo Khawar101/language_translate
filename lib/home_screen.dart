@@ -17,7 +17,7 @@ class _MyHomePageState extends State<MyHomePage> {
     const PostNowData(),
     Container(),
     Container(),
-     const ImagePickerWidget(),
+      ImagePickerWidget(data: '', id: '',),
     Container(),
   ];
 
