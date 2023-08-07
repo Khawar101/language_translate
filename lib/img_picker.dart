@@ -1,5 +1,4 @@
-// ignore_for_file: unnecessary_null_comparison, body_might_complete_normally_catch_error
-
+// ignore_for_file: unnecessary_null_comparison, body_might_complete_normally_catch_error, prefer_typing_uninitialized_variables
 import 'dart:developer';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
