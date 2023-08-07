@@ -11,7 +11,6 @@ class PostNowData extends StatefulWidget {
   @override
   State<PostNowData> createState() => _PostNowDataState();
 }
-
 class _PostNowDataState extends State<PostNowData> {
 
   Stream collectionStream =
