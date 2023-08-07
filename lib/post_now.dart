@@ -34,11 +34,9 @@ class _PostNowDataState extends State<PostNowData> {
                       if (snapshot.hasError) {
                         return const Text('Something went wrong');
                       }
-
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Text("Loading");
                       }
-
                       return ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
