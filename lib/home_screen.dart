@@ -1,9 +1,12 @@
 // ignore_for_file: unused_field
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:language_translate/img_picker.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
+import 'package:language_translate/menu_screen.dart';
 import 'package:language_translate/post_now.dart';
+import 'package:language_translate/routes/main_raoute.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -17,7 +20,10 @@ class _MyHomePageState extends State<MyHomePage> {
     const PostNowData(),
     Container(),
     Container(),
-      ImagePickerWidget(data: {}, id: '',),
+    const ImagePickerWidget(
+      data: {},
+      id: '',
+    ),
     Container(),
   ];
 
@@ -87,19 +93,26 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Icon(Icons.info_outline),
-        actions: const <Widget>[
+        actions: <Widget>[
           Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: Icon(
-              Icons.menu,
-              color: Colors.black,
-              size: 25,
+            padding: const EdgeInsets.only(right: 20),
+            child: GestureDetector(
+              onTap: () {
+                // String name = "khawar";
+                // GoRouter.of(context).go("/MenuScreen/$name");
+                context.goNamed(RouteNames.menuScreen,
+                    pathParameters: {"name": "Khawar"});
+              },
+              child: const Icon(
+                Icons.menu,
+                color: Colors.black,
+                size: 25,
+              ),
             ),
           ),
         ],
       ),
       body: views[selectedItemPosition],
-      
       bottomNavigationBar: SnakeNavigationBar.color(
         shadowColor: const Color(0xFF4873A6).withOpacity(0.7),
         height: 40,
@@ -133,7 +146,8 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.camera, size: 20), label: 'Camera'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.groups_2_outlined, size: 30), label: 'Textfield'),
+              icon: Icon(Icons.groups_2_outlined, size: 30),
+              label: 'Textfield'),
           BottomNavigationBarItem(
               icon: Icon(Icons.person_2_outlined), label: 'Person')
         ],
