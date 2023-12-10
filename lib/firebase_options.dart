@@ -66,8 +66,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '711588103735',
     projectId: 'translate-language-c5064',
     storageBucket: 'translate-language-c5064.appspot.com',
-    androidClientId: '711588103735-na7tpl6rnmmpmirhni4g8gaq0gu5bcns.apps.googleusercontent.com',
-    iosClientId: '711588103735-hlovrfu53a7eb84g8gfjlu1phjtarhbd.apps.googleusercontent.com',
+    androidClientId:
+        '711588103735-na7tpl6rnmmpmirhni4g8gaq0gu5bcns.apps.googleusercontent.com',
+    iosClientId:
+        '711588103735-hlovrfu53a7eb84g8gfjlu1phjtarhbd.apps.googleusercontent.com',
     iosBundleId: 'com.example.languageTranslate',
   );
 
@@ -77,8 +79,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '711588103735',
     projectId: 'translate-language-c5064',
     storageBucket: 'translate-language-c5064.appspot.com',
-    androidClientId: '711588103735-na7tpl6rnmmpmirhni4g8gaq0gu5bcns.apps.googleusercontent.com',
-    iosClientId: '711588103735-3loe6rnnd8h35stdjuq6t3hg3p9akt9g.apps.googleusercontent.com',
+    androidClientId:
+        '711588103735-na7tpl6rnmmpmirhni4g8gaq0gu5bcns.apps.googleusercontent.com',
+    iosClientId:
+        '711588103735-3loe6rnnd8h35stdjuq6t3hg3p9akt9g.apps.googleusercontent.com',
     iosBundleId: 'com.example.languageTranslate.RunnerTests',
   );
 }

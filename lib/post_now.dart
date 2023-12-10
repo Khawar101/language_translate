@@ -10,8 +10,8 @@ class PostNowData extends StatefulWidget {
   @override
   State<PostNowData> createState() => _PostNowDataState();
 }
-class _PostNowDataState extends State<PostNowData> {
 
+class _PostNowDataState extends State<PostNowData> {
   Stream collectionStream =
       FirebaseFirestore.instance.collection('users').snapshots();
   final Stream<QuerySnapshot> _usersStream =
@@ -58,7 +58,10 @@ class _PostNowDataState extends State<PostNowData> {
                                 foregroundColor: Colors.transparent,
                               ),
                               subtitle: Text(data['password'].toString()),
-                              trailing:  PopupMenu(id: data.id.toString(), data: data,),
+                              trailing: PopupMenu(
+                                id: data.id.toString(),
+                                data: data,
+                              ),
                             );
                           });
                     })
@@ -74,9 +77,9 @@ class _PostNowDataState extends State<PostNowData> {
 enum SampleItem { itemOne, itemTwo }
 
 class PopupMenu extends StatefulWidget {
-final String id;
-  final  data;
- 
+  final String id;
+  final data;
+
   const PopupMenu({super.key, required this.id, required this.data});
 
   @override
@@ -85,15 +88,16 @@ final String id;
 
 class _PopupMenuState extends State<PopupMenu> {
   SampleItem? selectedMenu;
- CollectionReference users = FirebaseFirestore.instance.collection('users');
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-    Future<void> deleteUser() {
-  return users
-    .doc(widget.id)
-    .delete()
-    .then((value) => log("User Deleted"))
-    .catchError((error) => log("Failed to delete user: $error"));
-}
+  Future<void> deleteUser() {
+    return users
+        .doc(widget.id)
+        .delete()
+        .then((value) => log("User Deleted"))
+        .catchError((error) => log("Failed to delete user: $error"));
+  }
+
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<SampleItem>(
@@ -102,18 +106,24 @@ class _PopupMenuState extends State<PopupMenu> {
       initialValue: selectedMenu,
 
       // Callback that sets the selected popup menu item.
-      onSelected: (SampleItem item) {log(item.toString());
-        if(item==SampleItem.itemOne){
+      onSelected: (SampleItem item) {
+        log(item.toString());
+        if (item == SampleItem.itemOne) {
           deleteUser();
           log("delete");
-        }else{
-                Navigator.push(context, MaterialPageRoute(builder: ((context) =>  ImagePickerWidget(id: widget.id, data: widget.data,))));
+        } else {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: ((context) => ImagePickerWidget(
+                        id: widget.id,
+                        data: widget.data,
+                      ))));
           log("Edit");
         }
       },
       itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
         PopupMenuItem<SampleItem>(
-      
             value: SampleItem.itemOne,
             child: Text(
               "Delete",
