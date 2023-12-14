@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'home_screen.dart';
+import 'package:language_translate/routes/main_raoute.dart';
 
 class SplashContainer extends StatefulWidget {
   const SplashContainer({super.key});
@@ -14,11 +15,9 @@ class _SplashContainerState extends State<SplashContainer> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 20), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const MyHomePage()),
-      );
+    Future.delayed(const Duration(seconds: 2), () {
+      context.goNamed(RouteNames.signUpScreen);
+   
     });
   }
 
