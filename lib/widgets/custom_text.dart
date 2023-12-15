@@ -1,4 +1,3 @@
-
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
@@ -15,7 +14,7 @@ class CustomText extends StatelessWidget {
   TextDirection? textDirection;
   TextOverflow? textOverflow;
   int? maxLines;
-   CustomText(
+  CustomText(
       {super.key,
       this.text = "",
       this.color,
@@ -28,22 +27,20 @@ class CustomText extends StatelessWidget {
       this.textOverflow,
       this.maxLines});
 
-
   @override
   Widget build(BuildContext context) {
     return Text(
-                text,
-                style: GoogleFonts.ibmPlexSans(
-                  color: color ?? Colors.black,
-                  fontSize: fontSize ?? 14,
-                  fontWeight: fontWeight ?? FontWeight.w400,
-                  letterSpacing: letterSpacing ?? 0,
-                  wordSpacing: wordspacing ?? 0,
-                ),
-                textAlign: textAlign,
-                overflow: textOverflow,
-                maxLines: maxLines,
-              );
+      text,
+      style: GoogleFonts.ibmPlexSans(
+        color: color ?? Colors.black,
+        fontSize: fontSize ?? 14,
+        fontWeight: fontWeight ?? FontWeight.w400,
+        letterSpacing: letterSpacing ?? 0,
+        wordSpacing: wordspacing ?? 0,
+      ),
+      textAlign: textAlign,
+      overflow: textOverflow,
+      maxLines: maxLines,
+    );
   }
 }
-

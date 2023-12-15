@@ -14,7 +14,7 @@ final GoRouter router = GoRouter(
           return const SplashContainer();
         },
         routes: [
-           GoRoute(
+          GoRoute(
             name: RouteNames.signUpScreen,
             path: 'SignUpScreen',
             builder: (BuildContext context, GoRouterState state) {
@@ -40,8 +40,8 @@ final GoRouter router = GoRouter(
 );
 
 class RouteNames {
-   static const splashScreen = "SplashScreen";
-   static const signUpScreen = "SignUpScreen";
+  static const splashScreen = "SplashScreen";
+  static const signUpScreen = "SignUpScreen";
   static const myHomePage = "MyHomePage";
   static const postNowData = "MenuScreen";
   static const menuScreen = "PostNowData";

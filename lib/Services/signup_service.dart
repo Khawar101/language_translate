@@ -52,12 +52,11 @@ class SignupService {
         await firebase.collection("users").doc(user.user!.uid).set(userData);
         log(user.toString());
         log("log in successfullt");
-
-       } on FirebaseAuthException catch (e) {
+      } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           log('The password provided is too weak.');
         } else if (e.code == 'email-already-in-use') {
-        log('The account already exists for that email.') ;
+          log('The account already exists for that email.');
         }
       } catch (e) {
         log(e.toString());

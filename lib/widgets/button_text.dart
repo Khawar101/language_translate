@@ -19,4 +19,3 @@ class ButtonText extends StatelessWidget {
     );
   }
 }
-

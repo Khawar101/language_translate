@@ -17,7 +17,6 @@ class _SplashContainerState extends State<SplashContainer> {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
       context.goNamed(RouteNames.signUpScreen);
-   
     });
   }
 
