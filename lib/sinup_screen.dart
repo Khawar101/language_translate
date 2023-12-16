@@ -58,7 +58,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           centerTitle: true,
         ),
-        //    backgroundColor: const Color(0xffe5f1f8),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -74,7 +73,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
 
                 const SizedBox(height: 20),
-                // ignore: prefer_const_constructors
                 Stack(
                   children: [
                     Center(
@@ -152,7 +150,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     GestureDetector(
                       onTap: () {
                         // viewModel.navigateVerify();
-                        // viewModel.sendOtp();
                       },
                       child: Container(
                         height: 50,
@@ -192,58 +189,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       text: "We Never share anything on your behalf",
                     ),
                     const SizedBox(height: 27),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //   children: [
-                    //     Container(
-                    //       height: 40,
-                    //       width: 40,
-                    //       decoration: BoxDecoration(
-                    //           border: Border.all(
-                    //               color:
-                    //                   const Color(0xff4873a6).withOpacity(0.7),
-                    //               width: 1),
-                    //           color: const Color(0xff868686),
-                    //           shape: BoxShape.circle),
-                    //       child: Center(
-                    //           child: Image.asset(
-                    //         'assets/icons/apple-logo.png',
-                    //         width: 22,
-                    //       )),
-                    //     ),
-                    //     Container(
-                    //       // padding: const EdgeInsets.all(20),
-                    //       height: 40,
-                    //       width: 40,
-                    //       decoration: BoxDecoration(
-                    //           border: Border.all(
-                    //               color:
-                    //                   const Color(0xff4873a6).withOpacity(0.7),
-                    //               width: 1),
-                    //           shape: BoxShape.circle),
-                    //       child: Center(
-                    //           child: Image.asset(
-                    //         'assets/icons/google-48.png',
-                    //         width: 22,
-                    //       )),
-                    //     ),
-                    //     Container(
-                    //       height: 40,
-                    //       width: 40,
-                    //       decoration: BoxDecoration(
-                    //           border: Border.all(
-                    //               color:
-                    //                   const Color(0xff4873a6).withOpacity(0.7),
-                    //               width: 1),
-                    //           color: const Color(0xff5085fc),
-                    //           shape: BoxShape.circle),
-                    //       child: Center(
-                    //           child: Image.asset(
-                    //         'assets/icons/icons8-fb-24.png',
-                    //       )),
-                    //     ),
-                    //   ],
-                    // ),
+                   
                     const SizedBox(height: 30)
                   ],
                 ),
