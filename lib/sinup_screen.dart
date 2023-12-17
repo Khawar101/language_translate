@@ -1,8 +1,6 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:language_translate/Services/signup_service.dart';
 import 'package:language_translate/widgets/button_text.dart';
 import 'package:language_translate/widgets/custom_text.dart';
