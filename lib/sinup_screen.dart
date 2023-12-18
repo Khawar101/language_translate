@@ -69,7 +69,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 CustomText(
                   text: "Subscribe quickly with us",
                 ),
-
                 const SizedBox(height: 20),
                 Stack(
                   children: [
@@ -95,7 +94,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: Align(
                           alignment: Alignment.bottomCenter,
                           child: GestureDetector(
-                            // onTap: viewModel.uploadProfile,
+                            onTap:(){
+                              setState(() {
+                            uploadProfile();
+                                
+                              });
+                            },
+                            
                             child: Container(
                               height: 40,
                               width: 55,
@@ -187,7 +192,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       text: "We Never share anything on your behalf",
                     ),
                     const SizedBox(height: 27),
-                   
+
                     const SizedBox(height: 30)
                   ],
                 ),
