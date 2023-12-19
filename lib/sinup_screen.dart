@@ -14,7 +14,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  var profile;
+  String? profile;
   bool visibleCheck = true;
   SignupService sigUpService = SignupService();
   TextEditingController nameCTRL = TextEditingController();
@@ -25,8 +25,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     try {
       await sigUpService.pickImage().whenComplete(() {
         if (sigUpService.profile.isNotEmpty) {
+          setState(() {
+            profile = sigUpService.profile;
           log("Profile uploaded successfully...");
-          profile = sigUpService.profile;
+          });
           log("profile..: $profile");
         } else {
           log("try again");
@@ -79,9 +81,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               backgroundColor: Colors.black,
                               foregroundColor: Colors.transparent,
                             )
-                          : const CircleAvatar(
+                          : CircleAvatar(
                               radius: 65,
-                              // backgroundImage: NetworkImage(viewModel.profile),
+                              backgroundImage: NetworkImage(profile.toString()),
                               backgroundColor: Colors.red,
                               foregroundColor: Colors.transparent,
                             ),
@@ -94,13 +96,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: Align(
                           alignment: Alignment.bottomCenter,
                           child: GestureDetector(
-                            onTap:(){
+                            onTap: () {
                               setState(() {
-                            uploadProfile();
-                                
+                                uploadProfile();
                               });
                             },
-                            
                             child: Container(
                               height: 40,
                               width: 55,

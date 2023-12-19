@@ -4,10 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:language_translate/Services/models/user_data.dart';
 
 class SignupService {
   FirebaseFirestore firebase = FirebaseFirestore.instance;
-  var profile = "";
+  String profile = "";
   late String name;
   late String email;
   late String password;
@@ -41,12 +42,13 @@ class SignupService {
             .createUserWithEmailAndPassword(email: email, password: password);
 
         userData = {
-          "UID": user.user!.uid,
+          "uID": user.user!.uid,
           "Name": name,
           "Profile": profile,
           "Email": email,
           "Password": password
         };
+    UserData userModel= UserData.fromJson(userData);
         await firebase.collection("users").doc(user.user!.uid).set(userData);
         log(user.toString());
         log("log in successfullt");
