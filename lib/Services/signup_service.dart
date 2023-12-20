@@ -48,7 +48,7 @@ class SignupService {
           "Email": email,
           "Password": password
         };
-    UserData userModel= UserData.fromJson(userData);
+        UserData userModel = UserData.fromJson(userData);
         await firebase.collection("users").doc(user.user!.uid).set(userData);
         log(user.toString());
         log("log in successfullt");

@@ -27,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         if (sigUpService.profile.isNotEmpty) {
           setState(() {
             profile = sigUpService.profile;
-          log("Profile uploaded successfully...");
+            log("Profile uploaded successfully...");
           });
           log("profile..: $profile");
         } else {
