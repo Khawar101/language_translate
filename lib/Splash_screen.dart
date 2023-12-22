@@ -15,8 +15,9 @@ class _SplashContainerState extends State<SplashContainer> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2), () {
-      context.goNamed(RouteNames.signUpScreen);
+    Future.delayed(const Duration(seconds: 3), () {
+      context
+          .goNamed(RouteNames.menuScreen, pathParameters: {"name": "Khawar"});
     });
   }
 

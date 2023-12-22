@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:language_translate/Services/signup_service.dart';
+import 'package:language_translate/routes/main_raoute.dart';
 import 'package:language_translate/widgets/button_text.dart';
 import 'package:language_translate/widgets/custom_text.dart';
 import 'package:language_translate/widgets/textfield.dart';
@@ -37,6 +39,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
       });
     } catch (e) {
       log("sign up screen ......$e");
+    }
+  }
+
+  signUp() async {
+    try {
+      await sigUpService.createAccount(
+          nameCTRL.text, emailCTRL.text, passwordCTRL.text);
+      setState(() {
+        context
+            .goNamed(RouteNames.menuScreen, pathParameters: {"name": "Khawar"});
+      });
+      log("log in =======");
+    } catch (e) {
+      log(e.toString());
     }
   }
 
@@ -152,7 +168,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.09),
                     GestureDetector(
                       onTap: () {
-                        // viewModel.navigateVerify();
+                        setState(() {
+                          signUp();
+                        });
                       },
                       child: Container(
                         height: 50,

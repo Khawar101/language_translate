@@ -33,7 +33,7 @@ class SignupService {
   }
 
   var userData;
-  createAccount() async {
+  createAccount(name,email,password) async {
     if (name == "" || email == "" || password == "") {
       log('filled the field');
     } else {
