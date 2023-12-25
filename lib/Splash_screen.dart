@@ -17,7 +17,9 @@ class _SplashContainerState extends State<SplashContainer> {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       context
-          .goNamed(RouteNames.menuScreen, pathParameters: {"name": "Khawar"});
+          .goNamed(RouteNames.signUpScreen
+          // menuScreen, pathParameters: {"name": "Khawar"}
+          );
     });
   }
 

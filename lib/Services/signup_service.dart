@@ -49,7 +49,7 @@ class SignupService {
           "Password": password
         };
         UserData userModel = UserData.fromJson(userData);
-        await firebase.collection("users").doc(user.user!.uid).set(userData);
+        await firebase.collection("users").doc(user.user!.uid).set(userModel.toJson());
         log(user.toString());
         log("log in successfullt");
       } on FirebaseAuthException catch (e) {
