@@ -40,7 +40,6 @@ class SignupService {
       try {
         UserCredential user = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
-
         userData = {
           "uID": user.user!.uid,
           "Name": name,
