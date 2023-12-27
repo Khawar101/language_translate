@@ -12,9 +12,8 @@ class PostNowData extends StatefulWidget {
 }
 
 class _PostNowDataState extends State<PostNowData> {
-  var 
   Stream collectionStream =
-      FirebaseFirestore.instance.collection('users').doc(user!.uid).snapshots();
+      FirebaseFirestore.instance.collection('users').doc().snapshots();
   final Stream<QuerySnapshot> _usersStream =
       FirebaseFirestore.instance.collection('users').snapshots();
 
