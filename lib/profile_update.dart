@@ -9,6 +9,7 @@ class ProfileUpdate extends StatefulWidget {
 }
 
 class _ProfileUpdateState extends State<ProfileUpdate> {
+   String? profile;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +30,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                             )
                           : CircleAvatar(
                               radius: 65,
-                              backgroundImage: NetworkImage(profile.toString()),
+                              // backgroundImage: NetworkImage(profile.toString()),
                               backgroundColor: Colors.red,
                               foregroundColor: Colors.transparent,
                             ),
@@ -44,7 +45,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                           child: GestureDetector(
                             onTap: () {
                               setState(() {
-                                uploadProfile();
+                                // uploadProfile();
                               });
                             },
                             child: Container(
