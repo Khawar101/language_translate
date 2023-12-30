@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:language_translate/widgets/textfield.dart';
 
 class ProfileUpdate extends StatefulWidget {
   const ProfileUpdate({super.key});
@@ -13,7 +14,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Profile Update')),
+      appBar: AppBar(title: const Text('Profile Update')),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
@@ -28,7 +29,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                               backgroundColor: Colors.black,
                               foregroundColor: Colors.transparent,
                             )
-                          : CircleAvatar(
+                          : const CircleAvatar(
                               radius: 65,
                               // backgroundImage: NetworkImage(profile.toString()),
                               backgroundColor: Colors.red,
@@ -63,6 +64,18 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                       ),
                     ),
                   ],
+                ),
+                const SizedBox(height: 15),
+                CustomTextFormField(
+                  hintText: "Name",
+                ),
+                const SizedBox(height: 15),
+                CustomTextFormField(
+                  hintText: "Email",
+                ),
+                const SizedBox(height: 15),
+                CustomTextFormField(
+                  hintText: "Password",
                 ),
             ],
           ),
