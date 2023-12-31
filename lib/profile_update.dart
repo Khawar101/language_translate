@@ -10,73 +10,76 @@ class ProfileUpdate extends StatefulWidget {
 }
 
 class _ProfileUpdateState extends State<ProfileUpdate> {
-   String? profile;
+  String? profile;
+  TextEditingController name = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Profile Update')),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             children: [
-                Stack(
-                  children: [
-                    Center(
-                      child: profile == null
-                          ? const CircleAvatar(
-                              radius: 65,
-                              backgroundColor: Colors.black,
-                              foregroundColor: Colors.transparent,
-                            )
-                          : const CircleAvatar(
-                              radius: 65,
-                              // backgroundImage: NetworkImage(profile.toString()),
-                              backgroundColor: Colors.red,
-                              foregroundColor: Colors.transparent,
+              Stack(
+                children: [
+                  Center(
+                    child: profile == null
+                        ? const CircleAvatar(
+                            radius: 65,
+                            backgroundColor: Colors.black,
+                            foregroundColor: Colors.transparent,
+                          )
+                        : const CircleAvatar(
+                            radius: 65,
+                            // backgroundImage: NetworkImage(profile.toString()),
+                            backgroundColor: Colors.red,
+                            foregroundColor: Colors.transparent,
+                          ),
+                  ),
+                  Center(
+                    child: CircleAvatar(
+                      radius: 75,
+                      backgroundColor: Colors.transparent,
+                      foregroundColor: Colors.transparent,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              // uploadProfile();
+                            });
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 55,
+                            decoration: BoxDecoration(
+                              color: const Color(0xff4873a6).withOpacity(0.7),
+                              borderRadius: BorderRadius.circular(25),
                             ),
-                    ),
-                    Center(
-                      child: CircleAvatar(
-                        radius: 75,
-                        backgroundColor: Colors.transparent,
-                        foregroundColor: Colors.transparent,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                // uploadProfile();
-                              });
-                            },
-                            child: Container(
-                              height: 40,
-                              width: 55,
-                              decoration: BoxDecoration(
-                                color: const Color(0xff4873a6).withOpacity(0.7),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              child: const Icon(Icons.edit_outlined,
-                                  color: Color(0xffffffff), size: 30),
-                            ),
+                            child: const Icon(Icons.edit_outlined,
+                                color: Color(0xffffffff), size: 30),
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 15),
-                CustomTextFormField(
-                  hintText: "Name",
-                ),
-                const SizedBox(height: 15),
-                CustomTextFormField(
-                  hintText: "Email",
-                ),
-                const SizedBox(height: 15),
-                CustomTextFormField(
-                  hintText: "Password",
-                ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 15),
+              CustomTextFormField(
+                hintText: "Name",
+              ),
+              const SizedBox(height: 15),
+              CustomTextFormField(
+                hintText: "Email",
+              ),
+              const SizedBox(height: 15),
+              CustomTextFormField(
+                hintText: "Password",
+              ),
             ],
           ),
         ),
