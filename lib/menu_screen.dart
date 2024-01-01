@@ -18,23 +18,42 @@ class _MenuScreenState extends State<MenuScreen> {
         title: Text("Welcome ${widget.name}"),
       ),
       body: Center(
-        child: InkWell(
-          onTap: () {},
-          child: Container(
-            height: 60,
-            width: 300,
-            color: Colors.black,
-            child: GestureDetector(
-                onTap: () {
-                  // context.go("/postnow");
-                  context.goNamed(RouteNames.postNowData);
-                },
+        child: Column(
+          children: [
+            GestureDetector(
+              onTap: () {
+                // context.go("/postnow");
+                context.goNamed(RouteNames.postNowData);
+              },
+              child: Container(
+                height: 60,
+                width: 300,
+                color: Colors.black,
                 child: const Center(
                     child: Text(
-                  "home button",
+                  "post know screen",
                   style: TextStyle(color: Colors.white),
-                ))),
-          ),
+                )),
+              ),
+            ),
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: () {
+                // context.go("/postnow");
+                context.goNamed(RouteNames.profileUpdate);
+              },
+              child: Container(
+                height: 60,
+                width: 300,
+                color: Colors.black,
+                child: const Center(
+                    child: Text(
+                  "profile update screen",
+                  style: TextStyle(color: Colors.white),
+                )),
+              ),
+            ),
+          ],
         ),
       ),
     );

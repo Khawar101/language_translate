@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:language_translate/Splash_screen.dart';
 import 'package:language_translate/menu_screen.dart';
 import 'package:language_translate/post_now.dart';
+import 'package:language_translate/profile_update.dart';
 import 'package:language_translate/sinup_screen.dart';
 
 final GoRouter router = GoRouter(
@@ -28,6 +29,13 @@ final GoRouter router = GoRouter(
               return MenuScreen(name: state.pathParameters["name"]!);
             },
           ),
+           GoRoute(
+            name: RouteNames.profileUpdate,
+            path: 'profileUpdate',
+            builder: (BuildContext context, GoRouterState state) {
+              return const ProfileUpdate();
+            },
+          ),
           GoRoute(
             name: RouteNames.postNowData,
             path: 'postnow',
@@ -45,4 +53,5 @@ class RouteNames {
   static const myHomePage = "MyHomePage";
   static const postNowData = "MenuScreen";
   static const menuScreen = "PostNowData";
+  static const profileUpdate = "profileUpdate";
 }

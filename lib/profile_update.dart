@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:language_translate/widgets/textfield.dart';
 
@@ -71,14 +70,17 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
               const SizedBox(height: 15),
               CustomTextFormField(
                 hintText: "Name",
+                controller: name,
               ),
               const SizedBox(height: 15),
               CustomTextFormField(
                 hintText: "Email",
+                controller: email,
               ),
               const SizedBox(height: 15),
               CustomTextFormField(
                 hintText: "Password",
+                controller: password,
               ),
             ],
           ),
