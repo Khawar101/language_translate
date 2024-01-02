@@ -33,7 +33,7 @@ class SignupService {
   }
 
   var userData;
-  createAccount(name,email,password) async {
+  createAccount(name, email, password) async {
     if (name == "" || email == "" || password == "") {
       log('filled the field');
     } else {
@@ -48,7 +48,10 @@ class SignupService {
           "Password": password
         };
         UserData userModel = UserData.fromJson(userData);
-        await firebase.collection("users").doc(user.user!.uid).set(userModel.toJson());
+        await firebase
+            .collection("users")
+            .doc(user.user!.uid)
+            .set(userModel.toJson());
         log(user.toString());
         log("log in successfullt");
       } on FirebaseAuthException catch (e) {

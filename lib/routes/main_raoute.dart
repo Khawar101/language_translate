@@ -29,7 +29,7 @@ final GoRouter router = GoRouter(
               return MenuScreen(name: state.pathParameters["name"]!);
             },
           ),
-           GoRoute(
+          GoRoute(
             name: RouteNames.profileUpdate,
             path: 'profileUpdate',
             builder: (BuildContext context, GoRouterState state) {
